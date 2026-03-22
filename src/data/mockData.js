@@ -7,7 +7,10 @@ export const initialProducts = [
     price: 27600,
     stock: 12,
     image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
-    description: 'A delicate and silky interpretation of oud wood.'
+    description: 'A delicate and silky interpretation of oud wood.',
+    isBestseller: true,
+    notes: ['Oud', 'Rose', 'Chamomile', 'Papyrus'],
+    occasions: ['Evening Wear', 'Signature Scent']
   },
   {
     id: 'p2',
@@ -17,7 +20,10 @@ export const initialProducts = [
     price: 29750,
     stock: 8,
     image: 'https://images.unsplash.com/photo-1615397323136-bd06aa3fb524?auto=format&fit=crop&q=80&w=800',
-    description: 'Luminous and sophisticated, lays on the skin like an amber floral and woody breeze.'
+    description: 'Luminous and sophisticated, lays on the skin like an amber floral and woody breeze.',
+    isBestseller: true,
+    notes: ['Jasmine', 'Saffron', 'Amberwood', 'Fir Resin'],
+    occasions: ['Date Night', 'Signature Scent']
   },
   {
     id: 'p3',
@@ -27,7 +33,10 @@ export const initialProducts = [
     price: 42000,
     stock: 5,
     image: 'https://images.unsplash.com/photo-1588669460012-70bbed0edfe1?auto=format&fit=crop&q=80&w=800',
-    description: 'Inspired by the dramatic life of a historic emperor, celebrating strength, power and success.'
+    description: 'Inspired by the dramatic life of a historic emperor, celebrating strength, power and success.',
+    isBestseller: true,
+    notes: ['Bergamot', 'Apple', 'Pineapple', 'Birch'],
+    occasions: ['Work', 'Formal']
   },
   {
     id: 'p4',
@@ -37,7 +46,10 @@ export const initialProducts = [
     price: 33500,
     stock: 15,
     image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=800',
-    description: 'A full-bodied journey into the once-forbidden.'
+    description: 'A full-bodied journey into the once-forbidden.',
+    isBestseller: false,
+    notes: ['Cherry', 'Bitter Almond', 'Tonka Bean', 'Vanilla'],
+    occasions: ['Evening Wear', 'Date Night']
   },
   {
     id: 'p5',
@@ -47,7 +59,10 @@ export const initialProducts = [
     price: 12750,
     stock: 20,
     image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800',
-    description: 'Iconic. Elusive. Seductive. A luxurious and sensual fragrance of rich, dark accords.'
+    description: 'Iconic. Elusive. Seductive. A luxurious and sensual fragrance of rich, dark accords.',
+    isBestseller: true,
+    notes: ['Truffle', 'Orchid', 'Patchouli', 'Incense'],
+    occasions: ['Evening Wear', 'Signature Scent']
   },
   {
     id: 'p6',
@@ -57,7 +72,10 @@ export const initialProducts = [
     price: 27200,
     stock: 10,
     image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800',
-    description: 'A perfume that introduces cardamom, iris, violet, ambient which crackle in the formula.'
+    description: 'A perfume that introduces cardamom, iris, violet, ambient which crackle in the formula.',
+    isBestseller: false,
+    notes: ['Sandalwood', 'Leather', 'Cardamom', 'Iris'],
+    occasions: ['Everyday Wear', 'Work']
   },
   {
     id: 'p7',
@@ -67,7 +85,10 @@ export const initialProducts = [
     price: 21500,
     stock: 14,
     image: 'https://images.unsplash.com/photo-1594913366159-1832fa7ab4ed?auto=format&fit=crop&q=80&w=800',
-    description: 'An ode to the beauty of Romani culture, its unique customs, intimate beliefs and distinguished way of living.'
+    description: 'An ode to the beauty of Romani culture, its unique customs, intimate beliefs and distinguished way of living.',
+    isBestseller: false,
+    notes: ['Bergamot', 'Lemon', 'Pepper', 'Vanilla'],
+    occasions: ['Everyday Wear', 'Casual']
   },
   {
     id: 'p8',
@@ -77,7 +98,10 @@ export const initialProducts = [
     price: 18500,
     stock: 4,
     image: 'https://images.unsplash.com/photo-1582211594533-25b88c072444?auto=format&fit=crop&q=80&w=800',
-    description: 'Contains the essence of Cognac derived from the liquor to lend it a natural caramel color.'
+    description: 'Contains the essence of Cognac derived from the liquor to lend it a natural caramel color.',
+    isBestseller: true,
+    notes: ['Cognac', 'Cinnamon', 'Tonka Bean', 'Oakwood'],
+    occasions: ['Evening Wear', 'Holiday']
   },
   {
     id: 'p9',
@@ -87,7 +111,10 @@ export const initialProducts = [
     price: 36000,
     stock: 2,
     image: 'https://images.unsplash.com/photo-1523293115678-02bb1470bd49?auto=format&fit=crop&q=80&w=800',
-    description: 'A baroque, sumptuous and symphonic perfume.'
+    description: 'A baroque, sumptuous and symphonic perfume.',
+    isBestseller: false,
+    notes: ['Rose', 'Patchouli', 'Clove', 'Raspberry'],
+    occasions: ['Formal', 'Signature Scent']
   },
   {
     id: 'p10',
@@ -97,7 +124,34 @@ export const initialProducts = [
     price: 15400,
     stock: 25,
     image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=800',
-    description: 'Inspired by a walk in the gardens of the Palais Royal.'
+    description: 'Inspired by a walk in the gardens of the Palais Royal.',
+    isBestseller: false,
+    notes: ['Sand', 'Spices', 'Rose', 'Nutmeg'],
+    occasions: ['Evening Wear', 'Casual']
+  }
+];
+
+export const initialTestimonials = [
+  {
+    id: 't1',
+    name: 'Eleanor V.',
+    role: 'Verified Buyer',
+    text: 'Antilia has entirely transformed how I experience luxury fragrances. The curation is breathtaking and the delivery experience felt completely personalized.',
+    rating: 5
+  },
+  {
+    id: 't2',
+    name: 'James L.',
+    role: 'Verified Buyer',
+    text: 'A flawless collection of niche scents. I found my signature scent here after years of searching. The Baccarat Rouge presentation was stunning.',
+    rating: 5
+  },
+  {
+    id: 't3',
+    name: 'Sofia R.',
+    role: 'Verified Buyer',
+    text: 'Every perfume feels like a masterpiece. The recommendations based on notes are incredibly accurate. Will exclusively shop here from now on.',
+    rating: 5
   }
 ];
 

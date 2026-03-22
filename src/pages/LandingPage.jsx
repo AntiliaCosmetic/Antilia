@@ -1,203 +1,262 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Lock, Mail, User } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
+import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { StoreContext } from '../context/StoreContext';
-
-const slides = [
-  'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=1600',
-  'https://images.unsplash.com/photo-1615397323136-bd06aa3fb524?auto=format&fit=crop&q=80&w=1600',
-  'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=1600'
-];
+import { initialTestimonials } from '../data/mockData';
+import { ArrowRight, Star, Plus } from 'lucide-react';
 
 const LandingPage = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isLogin, setIsLogin] = useState(true);
-  const { login, currentUser } = useContext(StoreContext);
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const { products, addToCart } = useContext(StoreContext);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, []);
+  const bestsellers = products.filter(p => p.isBestseller).slice(0, 4);
 
-  const handleAuth = (e) => {
-    e.preventDefault();
-    if (email) {
-      login(email);
-      navigate('/catalog');
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
     }
   };
 
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
-    <div className="flex flex-col md:flex-row min-h-screen bg-[#0F0F0F] text-white overflow-hidden">
-      {/* Left Column - Auth / Welcome (Dark Editorial Theme) */}
-      <div className="w-full md:w-[45%] lg:w-[40%] flex flex-col justify-center px-8 py-20 md:px-16 lg:px-24 z-10 relative">
-        {/* Subtle background glow */}
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-[#1A1A1A] to-[#0F0F0F] -z-10"></div>
-        <div className="absolute top-1/4 left-0 w-64 h-64 bg-[#D9BB73] rounded-full mix-blend-multiply filter blur-[128px] opacity-20 -z-10 animate-blob"></div>
-
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="max-w-md w-full mx-auto"
+    <div className="bg-[#0F0F0F] text-[#F9F8F6] selection:bg-[#D9BB73] selection:text-[#0F0F0F] overflow-x-hidden">
+      
+      {/* 1. Hero Section */}
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        <motion.div 
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 10, ease: "linear", repeat: Infinity, repeatType: "reverse" }}
+          className="absolute inset-0 z-0"
         >
-          {currentUser ? (
-            <div className="text-center">
-              <h2 className="text-5xl font-serif text-[#F9F8F6] mb-6 tracking-tight leading-tight">
-                Welcome,<br/>
-                <span className="italic text-[#D9BB73]">{currentUser.name}</span>
-              </h2>
-              <p className="text-gray-400 mb-10 font-light text-lg tracking-wide">Enter the gallery and discover your signature scent.</p>
-              <Link 
-                to="/catalog"
-                className="group relative inline-flex items-center justify-center w-full py-5 px-8 font-medium tracking-[0.2em] text-xs uppercase overflow-hidden border border-[#D9BB73]/30 hover:border-[#D9BB73] transition-colors duration-500"
-              >
-                <div className="absolute inset-0 w-full h-full bg-[#D9BB73] opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
-                <span className="relative z-10 text-[#F9F8F6]">The Collection</span>
-                <ArrowRight className="relative z-10 ml-3 w-4 h-4 text-[#D9BB73] transform group-hover:translate-x-1 transition-transform duration-300" />
-              </Link>
-            </div>
-          ) : (
-            <>
-              <div className="mb-14">
-                <motion.h2 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.8 }}
-                  className="text-5xl font-serif text-[#F9F8F6] mb-4 tracking-tight"
-                >
-                  {isLogin ? 'Sign In' : 'Join Us'}
-                </motion.h2>
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: "40px" }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
-                  className="h-px bg-[#D9BB73] mb-4"
-                ></motion.div>
-                <motion.p 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.5, duration: 0.8 }}
-                  className="text-gray-400 font-light tracking-wide text-sm"
-                >
-                  Curated luxury for the discerning.
-                </motion.p>
-              </div>
-
-              <form onSubmit={handleAuth} className="space-y-8">
-                {!isLogin && (
-                  <div className="relative group">
-                    <input
-                      type="text"
-                      className="block w-full py-3 bg-transparent border-b border-gray-800 focus:outline-none focus:border-[#D9BB73] transition-colors text-[#F9F8F6] placeholder-transparent peer font-light"
-                      placeholder="Full Name"
-                      id="fullName"
-                    />
-                    <label htmlFor="fullName" className="absolute left-0 top-3 text-gray-500 text-sm tracking-wide transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#D9BB73] cursor-text">
-                      Full Name
-                    </label>
-                  </div>
-                )}
-                
-                <div className="relative group">
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full py-3 bg-transparent border-b border-gray-800 focus:outline-none focus:border-[#D9BB73] transition-colors text-[#F9F8F6] placeholder-transparent peer font-light"
-                    placeholder="Email Address"
-                    id="email"
-                  />
-                  <label htmlFor="email" className="absolute left-0 top-3 text-gray-500 text-sm tracking-wide transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#D9BB73] cursor-text">
-                    Email Address
-                  </label>
-                </div>
-
-                <div className="relative group">
-                  <input
-                    type="password"
-                    className="block w-full py-3 bg-transparent border-b border-gray-800 focus:outline-none focus:border-[#D9BB73] transition-colors text-[#F9F8F6] placeholder-transparent peer font-light"
-                    placeholder="Password"
-                    id="password"
-                  />
-                  <label htmlFor="password" className="absolute left-0 top-3 text-gray-500 text-sm tracking-wide transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#D9BB73] cursor-text">
-                    Password
-                  </label>
-                </div>
-
-                <div className="pt-6">
-                  <button
-                    type="submit"
-                    className="w-full relative inline-flex items-center justify-center py-4 px-8 font-medium tracking-[0.15em] text-xs uppercase border border-[#D9BB73] hover:bg-[#D9BB73] hover:text-[#0F0F0F] transition-all duration-300 text-[#D9BB73]"
-                  >
-                    {isLogin ? 'Enter' : 'Register'}
-                  </button>
-                </div>
-              </form>
-
-              <div className="mt-10 flex flex-col items-center space-y-4">
-                <button
-                  onClick={() => setIsLogin(!isLogin)}
-                  className="text-xs text-gray-500 hover:text-[#D9BB73] transition-colors uppercase tracking-widest border-b border-transparent hover:border-[#D9BB73] pb-1"
-                >
-                  {isLogin ? "Create an account" : 'Already a member?'}
-                </button>
-                
-                <Link to="/catalog" className="text-xs font-light text-[#F9F8F6] hover:text-[#D9BB73] uppercase tracking-widest transition-colors opacity-60 hover:opacity-100 flex items-center">
-                  Continue as Guest <ArrowRight className="ml-1 w-3 h-3" />
-                </Link>
-              </div>
-            </>
-          )}
-        </motion.div>
-      </div>
-
-      {/* Right Column - Hero Slider (The Gallery) */}
-      <div className="w-full md:w-[55%] lg:w-[60%] h-[50vh] md:h-screen relative overflow-hidden order-first md:order-last bg-[#0F0F0F]">
-        <AnimatePresence initial={false}>
-          <motion.img
-            key={currentSlide}
-            src={slides[currentSlide]}
-            alt="Luxury Fragrance"
-            initial={{ opacity: 0, scale: 1.1, filter: 'blur(10px)' }}
-            animate={{ opacity: 0.85, scale: 1, filter: 'blur(0px)' }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 1.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute inset-0 w-full h-full object-cover mix-blend-luminosity"
+          <img 
+            src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=2000" 
+            alt="Luxury Perfume" 
+            className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
           />
-        </AnimatePresence>
-        
-        {/* Gradients to blend imagery seamlessly */}
-        <div className="absolute inset-0 tracking-widest bg-gradient-to-r from-[#0F0F0F] via-transparent to-transparent opacity-80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-[#0F0F0F]/30" />
-        
-        {/* Floating Text Overlay over Image */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-black/30" />
+        </motion.div>
+
+        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1.5 }}
-            className="text-6xl md:text-8xl font-serif text-[#F9F8F6]/90 tracking-tighter"
+            transition={{ duration: 1.2, delay: 0.2 }}
           >
-            Antilia
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5, duration: 1.5 }}
-            className="mt-4 text-[#D9BB73] tracking-[0.5em] text-xs uppercase"
-          >
-            L'Essence de Paris
-          </motion.p>
+            <p className="text-[#D9BB73] text-xs md:text-sm font-medium tracking-[0.4em] uppercase mb-6">Maison de Parfumerie</p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white tracking-tight leading-tight mb-8">
+              The Essence of <br/><span className="italic text-[#D9BB73]">Elegance</span>
+            </h1>
+            <p className="text-gray-300 font-light text-sm md:text-lg tracking-widest max-w-2xl mx-auto mb-12 leading-relaxed">
+              Discover a meticulously curated collection of authentic, rare, and niche fragrances crafted to define your signature aura.
+            </p>
+            
+            <button 
+              onClick={() => navigate('/catalog')}
+              className="glass-panel text-white hover:bg-[#D9BB73] hover:text-[#0F0F0F] border-[#D9BB73]/50 transition-all duration-500 uppercase tracking-[0.3em] text-xs px-10 py-5 font-semibold group flex items-center mx-auto"
+            >
+              Shop The Collection
+              <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
+            </button>
+          </motion.div>
         </div>
-      </div>
+      </section>
+
+      {/* 2. Shop By Category */}
+      <section className="py-24 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <motion.div 
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+        >
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif mb-4">Scent Profiles</h2>
+            <div className="w-12 h-px bg-[#D9BB73] mx-auto mb-4"></div>
+            <p className="text-gray-400 text-xs tracking-[0.2em] uppercase">Find your perfect category</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            {['Oriental', 'Floral', 'Woody', 'Fresh'].map((cat, idx) => {
+              const bgImages = {
+                'Oriental': 'https://images.unsplash.com/photo-1608528577891-eb0559ec3ea0?auto=format&fit=crop&q=80&w=800',
+                'Floral': 'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&q=80&w=800',
+                'Woody': 'https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?auto=format&fit=crop&q=80&w=800',
+                'Fresh': 'https://images.unsplash.com/photo-1550005740-4cb50f6d538e?auto=format&fit=crop&q=80&w=800'
+              };
+              return (
+                <motion.div 
+                  key={cat} 
+                  variants={itemVariants}
+                  onClick={() => navigate('/catalog')}
+                  className={`group relative h-80 overflow-hidden cursor-pointer ${idx === 0 || idx === 3 ? 'md:col-span-2' : 'col-span-1'}`}
+                >
+                  <img 
+                    src={bgImages[cat]} 
+                    alt={cat} 
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-40" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                  <div className="absolute bottom-8 left-8">
+                    <h3 className="text-2xl font-serif text-white group-hover:text-[#D9BB73] transition-colors">{cat}</h3>
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mt-2 flex items-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      Explore <ArrowRight className="w-3 h-3 ml-2" />
+                    </p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* 3. Iconic Bestsellers */}
+      <section className="py-24 bg-[#141414] border-y border-[#1A1A1A]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-end mb-16">
+            <div>
+              <p className="text-[#D9BB73] text-[10px] tracking-[0.3em] uppercase mb-3">Curated Selection</p>
+              <h2 className="text-3xl md:text-5xl font-serif text-white">Iconic Bestsellers</h2>
+            </div>
+            <button 
+              onClick={() => navigate('/catalog')}
+              className="hidden md:flex text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-[#D9BB73] items-center transition-colors pb-1 border-b border-transparent hover:border-[#D9BB73]"
+            >
+              View All <ArrowRight className="w-3 h-3 ml-2" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {bestsellers.map((product, index) => (
+              <motion.div 
+                key={product.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="group relative flex flex-col"
+              >
+                <div 
+                  className="aspect-[3/4] w-full overflow-hidden bg-[#0F0F0F] relative mb-6 cursor-pointer"
+                  onClick={() => navigate(`/product/${product.id}`)}
+                >
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="h-full w-full object-cover object-center transition-all duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/80 to-transparent">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        addToCart(product);
+                      }}
+                      className="w-full bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#D9BB73]/50 text-[#F9F8F6] py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-[#D9BB73] hover:text-[#0F0F0F] transition-colors flex justify-center items-center"
+                    >
+                      <Plus className="w-3 h-3 mr-2" /> Quick Add
+                    </button>
+                  </div>
+                </div>
+                <div className="text-center px-2">
+                  <p className="text-[9px] tracking-[0.2em] uppercase text-gray-500 mb-1">{product.brand}</p>
+                  <h3 className="text-lg font-serif text-white mb-2 group-hover:text-[#D9BB73] transition-colors cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
+                    {product.name}
+                  </h3>
+                  <p className="text-xs font-light text-gray-400 tracking-widest">₹{product.price}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <button 
+            onClick={() => navigate('/catalog')}
+            className="md:hidden mt-12 w-full text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-[#D9BB73] flex justify-center items-center py-4 border border-[#1A1A1A]"
+          >
+            View All Bestsellers <ArrowRight className="w-3 h-3 ml-2" />
+          </button>
+        </div>
+      </section>
+
+      {/* 4. Shop by Notes (Ingredients equivalent) */}
+      <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif mb-4">The Olfactory Palette</h2>
+          <div className="w-12 h-px bg-[#D9BB73] mx-auto mb-4"></div>
+          <p className="text-gray-400 text-xs tracking-[0.2em] uppercase">Shop by Key Notes</p>
+        </div>
+
+        <div className="flex overflow-x-auto hide-scrollbar space-x-6 pb-8 snap-x">
+          {[
+            { name: 'Oud', img: 'https://images.unsplash.com/photo-1610461888750-10bfc601b874?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Vanilla', img: 'https://images.unsplash.com/photo-1608985161093-690226cbaae1?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Rose', img: 'https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Bergamot', img: 'https://images.unsplash.com/photo-1613204918239-0153ab7ee83a?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Patchouli', img: 'https://images.unsplash.com/photo-1540324888062-09439bdffcfc?auto=format&fit=crop&q=80&w=400' },
+          ].map((note, i) => (
+            <div key={note.name} className="snap-start flex-shrink-0 w-48 group cursor-pointer" onClick={() => navigate('/catalog')}>
+              <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border border-[#1A1A1A] group-hover:border-[#D9BB73] transition-colors duration-500 relative">
+                <img src={note.img} alt={note.name} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+              </div>
+              <h4 className="text-center text-sm tracking-[0.2em] uppercase text-gray-300 group-hover:text-white transition-colors">{note.name}</h4>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. Bespoke Services (B2B/Corporate Equivalent) */}
+      <section className="relative py-32 bg-[#1A1A1A] overflow-hidden">
+        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1557008890-a54101e4bb25?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center mix-blend-overlay"></div>
+        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
+          <p className="text-[#D9BB73] text-xs font-bold tracking-[0.3em] uppercase mb-6">Atelier Antilia</p>
+          <h2 className="text-4xl md:text-6xl font-serif text-white mb-8 leading-tight">Create Your Signature Scent</h2>
+          <p className="text-gray-300 font-light text-sm md:text-lg mb-12 max-w-2xl mx-auto tracking-wide leading-relaxed">
+            Partner with our master perfumers to design bespoke fragrances for yourself, your luxury hotel, or corporate gifting. A truly unique olfactory identity crafted from the world's most precious ingredients.
+          </p>
+          <button className="bg-[#D9BB73] text-[#0F0F0F] px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-colors">
+            Book a Consultation
+          </button>
+        </div>
+      </section>
+
+      {/* 6. Testimonials */}
+      <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-3xl md:text-4xl font-serif mb-4">The Society Speaks</h2>
+          <div className="w-12 h-px bg-[#D9BB73] mx-auto mb-4"></div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {initialTestimonials.map((testimonial) => (
+            <motion.div 
+              key={testimonial.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="glass-panel-dark p-10 relative flex flex-col border border-[#1A1A1A]"
+            >
+              <div className="flex space-x-1 text-[#D9BB73] mb-6">
+                {[...Array(testimonial.rating)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-current" />
+                ))}
+              </div>
+              <p className="font-serif text-gray-300 text-lg leading-relaxed flex-grow italic mb-8">
+                "{testimonial.text}"
+              </p>
+              <div>
+                <h4 className="text-white text-sm tracking-wider uppercase mb-1">{testimonial.name}</h4>
+                <p className="text-[#D9BB73] text-[9px] uppercase tracking-[0.2em]">{testimonial.role}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
     </div>
   );
 };

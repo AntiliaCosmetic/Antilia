@@ -3,6 +3,7 @@ import CustomerLayout from './layouts/CustomerLayout';
 import AdminLayout from './layouts/AdminLayout';
 import LandingPage from './pages/LandingPage';
 import CatalogPage from './pages/CatalogPage';
+import ProductDetails from './pages/ProductDetails';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
 import { useContext } from 'react';
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<CustomerLayout />}>
           <Route index element={<LandingPage />} />
           <Route path="catalog" element={<CatalogPage />} />
+          <Route path="product/:id" element={<ProductDetails />} />
         </Route>
 
         {/* Admin Routes */}

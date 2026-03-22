@@ -6,45 +6,45 @@ export const StoreContext = createContext();
 export const StoreProvider = ({ children }) => {
   // Initialize state from LocalStorage or use defaults
   const [products, setProducts] = useState(() => {
-    const saved = localStorage.getItem('antilia_v3_products');
+    const saved = localStorage.getItem('antilia_v4_products');
     return saved ? JSON.parse(saved) : initialProducts;
   });
 
   const [users, setUsers] = useState(() => {
-    const saved = localStorage.getItem('antilia_v3_users');
+    const saved = localStorage.getItem('antilia_v4_users');
     return saved ? JSON.parse(saved) : initialUsers;
   });
 
   const [orders, setOrders] = useState(() => {
-    const saved = localStorage.getItem('antilia_v3_orders');
+    const saved = localStorage.getItem('antilia_v4_orders');
     return saved ? JSON.parse(saved) : initialOrders;
   });
 
   const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem('antilia_v3_cart');
+    const saved = localStorage.getItem('antilia_v4_cart');
     return saved ? JSON.parse(saved) : [];
   });
 
   const [currentUser, setCurrentUser] = useState(() => {
-    const saved = localStorage.getItem('antilia_v3_currentUser');
+    const saved = localStorage.getItem('antilia_v4_currentUser');
     return saved ? JSON.parse(saved) : null;
   });
 
   // Sync to LocalStorage
   useEffect(() => {
-    localStorage.setItem('antilia_v3_products', JSON.stringify(products));
+    localStorage.setItem('antilia_v4_products', JSON.stringify(products));
   }, [products]);
 
   useEffect(() => {
-    localStorage.setItem('antilia_v3_users', JSON.stringify(users));
+    localStorage.setItem('antilia_v4_users', JSON.stringify(users));
   }, [users]);
 
   useEffect(() => {
-    localStorage.setItem('antilia_v3_orders', JSON.stringify(orders));
+    localStorage.setItem('antilia_v4_orders', JSON.stringify(orders));
   }, [orders]);
 
   useEffect(() => {
-    localStorage.setItem('antilia_v3_cart', JSON.stringify(cart));
+    localStorage.setItem('antilia_v4_cart', JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {
