@@ -25,10 +25,10 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="bg-[#0F0F0F] text-[#F9F8F6] selection:bg-[#D9BB73] selection:text-[#0F0F0F] overflow-x-hidden">
+    <div className="bg-[var(--color-brand-silk-white)] text-[var(--color-brand-charcoal)] selection:bg-[var(--color-brand-rose-gold-light)] selection:text-[var(--color-brand-charcoal)] overflow-x-hidden">
       
       {/* 1. Hero Section */}
-      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      <section className="relative h-screen w-full flex items-center justify-center overflow-hidden glow-hero">
         <motion.div 
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -36,11 +36,12 @@ const LandingPage = () => {
           className="absolute inset-0 z-0"
         >
           <img 
-            src="https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=2000" 
-            alt="Luxury Perfume" 
-            className="w-full h-full object-cover opacity-60 mix-blend-luminosity"
+            src="/Antilia/assets/products/hero.jpg" 
+            alt="Luxury Skincare" 
+            className="w-full h-full object-cover opacity-40 mix-blend-luminosity"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0F0F0F] via-transparent to-black/30" />
+
+          <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-brand-silk-white)] via-transparent to-white/30" />
         </motion.div>
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
@@ -49,17 +50,17 @@ const LandingPage = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.2 }}
           >
-            <p className="text-[#D9BB73] text-xs md:text-sm font-medium tracking-[0.4em] uppercase mb-6">Maison de Parfumerie</p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-white tracking-tight leading-tight mb-8">
-              The Essence of <br/><span className="italic text-[#D9BB73]">Elegance</span>
+            <p className="text-[var(--color-brand-rose-gold-dark)] text-xs md:text-sm font-medium tracking-[0.4em] uppercase mb-6">Boutique Skin Rituals</p>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-[var(--color-brand-charcoal)] tracking-tight leading-tight mb-8">
+              The Silk <span className="italic secondary-serif text-[var(--color-brand-rose-gold-dark)]">Glow</span> <br/>Experience
             </h1>
-            <p className="text-gray-300 font-light text-sm md:text-lg tracking-widest max-w-2xl mx-auto mb-12 leading-relaxed">
-              Discover a meticulously curated collection of authentic, rare, and niche fragrances crafted to define your signature aura.
+            <p className="text-[var(--color-brand-muted)] font-light text-sm md:text-lg tracking-widest max-w-2xl mx-auto mb-12 leading-relaxed secondary-serif">
+              Discover a meticulously curated collection of clinical-grade skincare, crafted to define your most radiant self.
             </p>
             
             <button 
               onClick={() => navigate('/catalog')}
-              className="glass-panel text-white hover:bg-[#D9BB73] hover:text-[#0F0F0F] border-[#D9BB73]/50 transition-all duration-500 uppercase tracking-[0.3em] text-xs px-10 py-5 font-semibold group flex items-center mx-auto"
+              className="btn-primary group flex items-center mx-auto"
             >
               Shop The Collection
               <ArrowRight className="w-4 h-4 ml-3 group-hover:translate-x-1 transition-transform" />
@@ -68,7 +69,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* 2. Shop By Category */}
+      {/* 2. Shop By Collection */}
       <section className="py-24 md:py-32 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <motion.div 
           initial="hidden"
@@ -77,36 +78,36 @@ const LandingPage = () => {
           variants={containerVariants}
         >
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif mb-4">Scent Profiles</h2>
-            <div className="w-12 h-px bg-[#D9BB73] mx-auto mb-4"></div>
-            <p className="text-gray-400 text-xs tracking-[0.2em] uppercase">Find your perfect category</p>
+            <h2 className="text-3xl md:text-4xl font-serif mb-4">Seasonal Collections</h2>
+            <div className="w-12 h-px bg-[var(--color-brand-rose-gold)] mx-auto mb-4"></div>
+            <p className="text-[var(--color-brand-muted)] text-xs tracking-[0.2em] uppercase">Targeted Science for your skin</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {['Oriental', 'Floral', 'Woody', 'Fresh'].map((cat, idx) => {
-              const bgImages = {
-                'Oriental': 'https://images.unsplash.com/photo-1608528577891-eb0559ec3ea0?auto=format&fit=crop&q=80&w=800',
-                'Floral': 'https://images.unsplash.com/photo-1546842931-886c185b4c8c?auto=format&fit=crop&q=80&w=800',
-                'Woody': 'https://images.unsplash.com/photo-1425913397330-cf8af2ff40a1?auto=format&fit=crop&q=80&w=800',
-                'Fresh': 'https://images.unsplash.com/photo-1550005740-4cb50f6d538e?auto=format&fit=crop&q=80&w=800'
-              };
+            {[
+              { name: 'Serums', img: '/Antilia/assets/products/p1.jpg' },
+              { name: 'Creams', img: '/Antilia/assets/products/p2.jpg' },
+              { name: 'Oils', img: '/Antilia/assets/products/p3.jpg' },
+              { name: 'Masks', img: '/Antilia/assets/products/p7.jpg' }
+            ].map((cat, idx) => {
+
               return (
                 <motion.div 
-                  key={cat} 
+                  key={cat.name} 
                   variants={itemVariants}
                   onClick={() => navigate('/catalog')}
-                  className={`group relative h-80 overflow-hidden cursor-pointer ${idx === 0 || idx === 3 ? 'md:col-span-2' : 'col-span-1'}`}
+                  className={`group relative h-[450px] overflow-hidden cursor-pointer ${idx === 0 || idx === 3 ? 'md:col-span-2' : 'col-span-1'}`}
                 >
                   <img 
-                    src={bgImages[cat]} 
-                    alt={cat} 
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-60 group-hover:opacity-40" 
+                    src={cat.img} 
+                    alt={cat.name} 
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110 opacity-80 group-hover:opacity-100" 
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                  <div className="absolute bottom-8 left-8">
-                    <h3 className="text-2xl font-serif text-white group-hover:text-[#D9BB73] transition-colors">{cat}</h3>
-                    <p className="text-xs uppercase tracking-[0.2em] text-gray-400 mt-2 flex items-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                      Explore <ArrowRight className="w-3 h-3 ml-2" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute bottom-10 left-10">
+                    <h3 className="text-3xl font-serif text-white group-hover:text-[var(--color-brand-rose-gold-light)] transition-colors">{cat.name}</h3>
+                    <p className="text-xs uppercase tracking-[0.2em] text-gray-300 mt-3 flex items-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      Explore Ritual <ArrowRight className="w-3 h-3 ml-2" />
                     </p>
                   </div>
                 </motion.div>
@@ -117,22 +118,22 @@ const LandingPage = () => {
       </section>
 
       {/* 3. Iconic Bestsellers */}
-      <section className="py-24 bg-[#141414] border-y border-[#1A1A1A]">
+      <section className="py-24 bg-white border-y border-[var(--color-brand-rose-gold-light)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-end mb-16">
             <div>
-              <p className="text-[#D9BB73] text-[10px] tracking-[0.3em] uppercase mb-3">Curated Selection</p>
-              <h2 className="text-3xl md:text-5xl font-serif text-white">Iconic Bestsellers</h2>
+              <p className="text-[var(--color-brand-rose-gold-dark)] text-[10px] tracking-[0.3em] uppercase mb-3">Curated Selection</p>
+              <h2 className="text-3xl md:text-5xl font-serif text-[var(--color-brand-charcoal)]">The Gold Standard</h2>
             </div>
             <button 
               onClick={() => navigate('/catalog')}
-              className="hidden md:flex text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-[#D9BB73] items-center transition-colors pb-1 border-b border-transparent hover:border-[#D9BB73]"
+              className="hidden md:flex text-xs uppercase tracking-[0.2em] text-[var(--color-brand-muted)] hover:text-[var(--color-brand-rose-gold-dark)] items-center transition-colors pb-1 border-b border-transparent hover:border-[var(--color-brand-rose-gold-dark)]"
             >
-              View All <ArrowRight className="w-3 h-3 ml-2" />
+              View Global Bestsellers <ArrowRight className="w-3 h-3 ml-2" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
             {bestsellers.map((product, index) => (
               <motion.div 
                 key={product.id}
@@ -140,86 +141,79 @@ const LandingPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group relative flex flex-col"
+                className="group relative flex flex-col luxury-card p-4"
               >
                 <div 
-                  className="aspect-[3/4] w-full overflow-hidden bg-[#0F0F0F] relative mb-6 cursor-pointer"
+                  className="aspect-[4/5] w-full overflow-hidden bg-[var(--color-brand-silk-white)] relative mb-8 cursor-pointer"
                   onClick={() => navigate(`/product/${product.id}`)}
                 >
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="h-full w-full object-cover object-center transition-all duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
+                    className="h-full w-full object-cover object-center transition-all duration-1000 group-hover:scale-110"
                   />
-                  <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-gradient-to-t from-black/80 to-transparent">
+                  <div className="absolute inset-x-0 bottom-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         addToCart(product);
                       }}
-                      className="w-full bg-[#1A1A1A]/80 backdrop-blur-sm border border-[#D9BB73]/50 text-[#F9F8F6] py-3 text-[10px] uppercase tracking-[0.2em] hover:bg-[#D9BB73] hover:text-[#0F0F0F] transition-colors flex justify-center items-center"
+                      className="w-full bg-white/90 backdrop-blur-sm border border-[var(--color-brand-rose-gold-dark)] text-[var(--color-brand-charcoal)] py-4 text-[10px] uppercase tracking-[0.2em] hover:bg-[var(--color-brand-rose-gold-dark)] hover:text-white transition-all duration-300 flex justify-center items-center shadow-lg"
                     >
-                      <Plus className="w-3 h-3 mr-2" /> Quick Add
+                      <Plus className="w-4 h-4 mr-2" /> Quick Add
                     </button>
                   </div>
                 </div>
-                <div className="text-center px-2">
-                  <p className="text-[9px] tracking-[0.2em] uppercase text-gray-500 mb-1">{product.brand}</p>
-                  <h3 className="text-lg font-serif text-white mb-2 group-hover:text-[#D9BB73] transition-colors cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
+                <div className="text-center">
+                  <p className="text-[9px] tracking-[0.3em] uppercase text-[var(--color-brand-rose-gold-dark)] mb-2 font-bold">{product.category}</p>
+                  <h3 className="text-xl font-serif text-[var(--color-brand-charcoal)] mb-3 group-hover:text-[var(--color-brand-rose-gold-dark)] transition-colors cursor-pointer" onClick={() => navigate(`/product/${product.id}`)}>
                     {product.name}
                   </h3>
-                  <p className="text-xs font-light text-gray-400 tracking-widest">₹{product.price}</p>
+                  <p className="text-sm font-light text-[var(--color-brand-muted)] tracking-widest secondary-serif italic">₹{product.price.toLocaleString()}</p>
                 </div>
               </motion.div>
             ))}
           </div>
-          
-          <button 
-            onClick={() => navigate('/catalog')}
-            className="md:hidden mt-12 w-full text-xs uppercase tracking-[0.2em] text-gray-400 hover:text-[#D9BB73] flex justify-center items-center py-4 border border-[#1A1A1A]"
-          >
-            View All Bestsellers <ArrowRight className="w-3 h-3 ml-2" />
-          </button>
         </div>
       </section>
 
-      {/* 4. Shop by Notes (Ingredients equivalent) */}
+      {/* 4. The Science of Ingredients */}
       <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-serif mb-4">The Olfactory Palette</h2>
-          <div className="w-12 h-px bg-[#D9BB73] mx-auto mb-4"></div>
-          <p className="text-gray-400 text-xs tracking-[0.2em] uppercase">Shop by Key Notes</p>
+          <h2 className="text-3xl md:text-4xl font-serif mb-4">The Potent Science</h2>
+          <div className="w-12 h-px bg-[var(--color-brand-rose-gold)] mx-auto mb-4"></div>
+          <p className="text-[var(--color-brand-muted)] text-xs tracking-[0.2em] uppercase">Shop by Key Ingredient</p>
         </div>
 
-        <div className="flex overflow-x-auto hide-scrollbar space-x-6 pb-8 snap-x">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
           {[
-            { name: 'Oud', img: 'https://images.unsplash.com/photo-1610461888750-10bfc601b874?auto=format&fit=crop&q=80&w=400' },
-            { name: 'Vanilla', img: 'https://images.unsplash.com/photo-1608985161093-690226cbaae1?auto=format&fit=crop&q=80&w=400' },
-            { name: 'Rose', img: 'https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&q=80&w=400' },
-            { name: 'Bergamot', img: 'https://images.unsplash.com/photo-1613204918239-0153ab7ee83a?auto=format&fit=crop&q=80&w=400' },
-            { name: 'Patchouli', img: 'https://images.unsplash.com/photo-1540324888062-09439bdffcfc?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Retinol', img: 'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Vitamin C', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Hyaluronic', img: 'https://images.unsplash.com/photo-1611080541599-8c6dbde6ed28?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Squalane', img: 'https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&q=80&w=400' },
+            { name: 'Peptides', img: 'https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&q=80&w=400' },
           ].map((note, i) => (
-            <div key={note.name} className="snap-start flex-shrink-0 w-48 group cursor-pointer" onClick={() => navigate('/catalog')}>
-              <div className="w-48 h-48 rounded-full overflow-hidden mb-6 border border-[#1A1A1A] group-hover:border-[#D9BB73] transition-colors duration-500 relative">
-                <img src={note.img} alt={note.name} className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700" />
+            <div key={note.name} className="group cursor-pointer text-center" onClick={() => navigate('/catalog')}>
+              <div className="aspect-square rounded-full overflow-hidden mb-6 border border-[var(--color-brand-rose-gold-light)] group-hover:border-[var(--color-brand-rose-gold-dark)] transition-all duration-700 relative">
+                <img src={note.img} alt={note.name} className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0" />
               </div>
-              <h4 className="text-center text-sm tracking-[0.2em] uppercase text-gray-300 group-hover:text-white transition-colors">{note.name}</h4>
+              <h4 className="text-sm tracking-[0.2em] uppercase text-[var(--color-brand-charcoal)] group-hover:text-[var(--color-brand-rose-gold-dark)] transition-colors font-medium">{note.name}</h4>
             </div>
           ))}
         </div>
       </section>
 
-      {/* 5. Bespoke Services (B2B/Corporate Equivalent) */}
-      <section className="relative py-32 bg-[#1A1A1A] overflow-hidden">
-        <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1557008890-a54101e4bb25?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center mix-blend-overlay"></div>
+      {/* 5. Luxora Bespoke (B2B/Corporate Equivalent) */}
+      <section className="relative py-32 bg-[var(--color-brand-charcoal)] overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&q=80&w=1600')] bg-cover bg-center mix-blend-overlay"></div>
         <div className="relative z-10 max-w-4xl mx-auto px-4 text-center">
-          <p className="text-[#D9BB73] text-xs font-bold tracking-[0.3em] uppercase mb-6">Atelier Antilia</p>
-          <h2 className="text-4xl md:text-6xl font-serif text-white mb-8 leading-tight">Create Your Signature Scent</h2>
-          <p className="text-gray-300 font-light text-sm md:text-lg mb-12 max-w-2xl mx-auto tracking-wide leading-relaxed">
-            Partner with our master perfumers to design bespoke fragrances for yourself, your luxury hotel, or corporate gifting. A truly unique olfactory identity crafted from the world's most precious ingredients.
+          <p className="text-[var(--color-brand-rose-gold)] text-xs font-bold tracking-[0.3em] uppercase mb-6">Atelier Antilia</p>
+          <h2 className="text-4xl md:text-6xl font-serif text-white mb-8 leading-tight">Your Signature <span className="italic secondary-serif">Ritual</span></h2>
+          <p className="text-gray-400 font-light text-sm md:text-lg mb-12 max-w-2xl mx-auto tracking-wide leading-relaxed secondary-serif">
+            Partner with our clinical dermatologists to design bespoke skincare regimens personalized to your unique DNA. A truly unique identity crafted from the world's most potent botanical actives.
           </p>
-          <button className="bg-[#D9BB73] text-[#0F0F0F] px-10 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white transition-colors">
-            Book a Consultation
+          <button className="bg-[var(--color-brand-rose-gold-dark)] text-white px-12 py-5 text-xs font-bold uppercase tracking-[0.2em] hover:bg-white hover:text-[var(--color-brand-charcoal)] transition-all duration-500 shadow-xl">
+            Request Skin Analysis
           </button>
         </div>
       </section>
@@ -228,7 +222,7 @@ const LandingPage = () => {
       <section className="py-24 md:py-32 px-4 max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-serif mb-4">The Society Speaks</h2>
-          <div className="w-12 h-px bg-[#D9BB73] mx-auto mb-4"></div>
+          <div className="w-12 h-px bg-[var(--color-brand-rose-gold)] mx-auto mb-4"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -238,19 +232,19 @@ const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="glass-panel-dark p-10 relative flex flex-col border border-[#1A1A1A]"
+              className="glass-panel p-10 relative flex flex-col luxury-card"
             >
-              <div className="flex space-x-1 text-[#D9BB73] mb-6">
+              <div className="flex space-x-1 text-[var(--color-brand-rose-gold-dark)] mb-6">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <Star key={i} className="w-4 h-4 fill-current" />
                 ))}
               </div>
-              <p className="font-serif text-gray-300 text-lg leading-relaxed flex-grow italic mb-8">
+              <p className="font-serif text-[var(--color-brand-charcoal)] text-xl leading-relaxed flex-grow italic mb-8 secondary-serif">
                 "{testimonial.text}"
               </p>
               <div>
-                <h4 className="text-white text-sm tracking-wider uppercase mb-1">{testimonial.name}</h4>
-                <p className="text-[#D9BB73] text-[9px] uppercase tracking-[0.2em]">{testimonial.role}</p>
+                <h4 className="text-[var(--color-brand-charcoal)] text-sm tracking-widest uppercase mb-1 font-bold">{testimonial.name}</h4>
+                <p className="text-[var(--color-brand-muted)] text-[10px] uppercase tracking-[0.2em]">{testimonial.role}</p>
               </div>
             </motion.div>
           ))}

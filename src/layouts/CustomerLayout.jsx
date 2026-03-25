@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const CustomerLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col relative bg-[#0F0F0F]">
+    <div className="min-h-screen flex flex-col relative bg-[var(--color-brand-silk-white)]">
       <Navbar />
       <main className="flex-grow">
         <Outlet />

@@ -6,50 +6,60 @@ export const StoreContext = createContext();
 export const StoreProvider = ({ children }) => {
   // Initialize state from LocalStorage or use defaults
   const [products, setProducts] = useState(() => {
-    const saved = localStorage.getItem('antilia_v4_products');
+    const saved = localStorage.getItem('antilia_v6_products');
     return saved ? JSON.parse(saved) : initialProducts;
   });
 
+
   const [users, setUsers] = useState(() => {
-    const saved = localStorage.getItem('antilia_v4_users');
+    const saved = localStorage.getItem('antilia_v6_users');
     return saved ? JSON.parse(saved) : initialUsers;
   });
 
+
   const [orders, setOrders] = useState(() => {
-    const saved = localStorage.getItem('antilia_v4_orders');
+    const saved = localStorage.getItem('antilia_v6_orders');
     return saved ? JSON.parse(saved) : initialOrders;
   });
 
+
   const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem('antilia_v4_cart');
+    const saved = localStorage.getItem('antilia_v6_cart');
     return saved ? JSON.parse(saved) : [];
   });
 
+
   const [currentUser, setCurrentUser] = useState(() => {
-    const saved = localStorage.getItem('antilia_v4_currentUser');
+    const saved = localStorage.getItem('antilia_v6_currentUser');
     return saved ? JSON.parse(saved) : null;
   });
 
+
   // Sync to LocalStorage
   useEffect(() => {
-    localStorage.setItem('antilia_v4_products', JSON.stringify(products));
+    localStorage.setItem('antilia_v6_products', JSON.stringify(products));
   }, [products]);
 
+
   useEffect(() => {
-    localStorage.setItem('antilia_v4_users', JSON.stringify(users));
+    localStorage.setItem('antilia_v6_users', JSON.stringify(users));
   }, [users]);
 
+
   useEffect(() => {
-    localStorage.setItem('antilia_v4_orders', JSON.stringify(orders));
+    localStorage.setItem('antilia_v6_orders', JSON.stringify(orders));
   }, [orders]);
 
-  useEffect(() => {
-    localStorage.setItem('antilia_v4_cart', JSON.stringify(cart));
-  }, [cart]);
 
   useEffect(() => {
-    localStorage.setItem('antilia_currentUser', JSON.stringify(currentUser));
+    localStorage.setItem('antilia_v6_cart', JSON.stringify(cart));
+  }, [cart]);
+
+
+  useEffect(() => {
+    localStorage.setItem('antilia_v6_currentUser', JSON.stringify(currentUser));
   }, [currentUser]);
+
 
   // Actions
   const addProduct = (product) => {

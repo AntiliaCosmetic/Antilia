@@ -21,23 +21,40 @@ const AdminLayout = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      <header className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold text-gray-900 tracking-tight font-serif">Antilia Admin</h1>
-          <button 
-            onClick={handleLogout}
-            className="flex items-center text-sm font-medium text-gray-500 hover:text-gray-900"
-          >
-            <LogOut className="w-4 h-4 mr-2" />
-            Sign out
-          </button>
+    <div className="min-h-screen bg-[var(--color-brand-silk-white)] flex flex-col font-sans">
+      <header className="bg-white border-b border-[var(--color-brand-rose-gold-light)] py-4">
+        <div className="max-w-[1600px] mx-auto px-8 flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <div className="w-10 h-10 bg-[var(--color-brand-charcoal)] flex items-center justify-center rounded-sm">
+                <span className="text-[var(--color-brand-rose-gold-light)] font-serif text-xl font-bold">L</span>
+            </div>
+            <div>
+                <h1 className="text-xl font-serif text-[var(--color-brand-charcoal)] uppercase tracking-[0.2em] font-black">Antilia <span className="italic secondary-serif lowercase">Internal</span></h1>
+            </div>
+          </div>
+          <div className="flex items-center space-x-8">
+            <div className="text-right hidden sm:block">
+                <p className="text-[10px] text-[var(--color-brand-muted)] uppercase tracking-widest font-bold">Operator</p>
+                <p className="text-xs font-serif italic text-[var(--color-brand-charcoal)]">{currentUser?.name}</p>
+            </div>
+            <button 
+                onClick={handleLogout}
+                className="flex items-center text-[10px] font-black uppercase tracking-[0.3em] text-[var(--color-brand-muted)] hover:text-red-600 transition-colors border border-[var(--color-brand-rose-gold-light)] px-4 py-2 hover:border-red-600"
+            >
+                <LogOut className="w-3 h-3 mr-2" />
+                Terminal Exit
+            </button>
+          </div>
         </div>
       </header>
       
-      <main className="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full">
+      <main className="flex-grow max-w-[1600px] mx-auto px-8 py-12 w-full">
         <Outlet />
       </main>
+      
+      <footer className="py-8 bg-white border-t border-[var(--color-brand-rose-gold-light)] text-center">
+        <p className="text-[9px] text-[var(--color-brand-muted)] uppercase tracking-[0.5em] font-black">Antilia Command Engine v4.0 // All interactions logged</p>
+      </footer>
     </div>
   );
 };

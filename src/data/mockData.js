@@ -1,133 +1,123 @@
 export const initialProducts = [
   {
     id: 'p1',
-    name: 'Oud Silk Mood',
-    brand: 'Maison Francis Kurkdjian',
-    category: 'Oriental',
-    price: 27600,
+    name: 'Midnight Recovery Serum',
+    brand: 'Antilia',
+    category: 'Serums',
+    price: 8500,
     stock: 12,
-    image: 'https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&q=80&w=800',
-    description: 'A delicate and silky interpretation of oud wood.',
+    image: '/Antilia/assets/products/p1.jpg',
+    description: 'A potent nightly serum enriched with botanical oils and retinol to rejuvenate your skin while you sleep.',
     isBestseller: true,
-    notes: ['Oud', 'Rose', 'Chamomile', 'Papyrus'],
-    occasions: ['Evening Wear', 'Signature Scent']
+    skinType: ['All Skin Types'],
+    ingredients: ['Retinol', 'Squalane', 'Evening Primrose'],
+    concern: ['Anti-Aging'],
+    usage: 'Apply 2-3 drops before moisturizer at night.'
   },
   {
     id: 'p2',
-    name: 'Baccarat Rouge 540',
-    brand: 'Maison Francis Kurkdjian',
-    category: 'Floral',
-    price: 29750,
-    stock: 8,
-    image: 'https://images.unsplash.com/photo-1615397323136-bd06aa3fb524?auto=format&fit=crop&q=80&w=800',
-    description: 'Luminous and sophisticated, lays on the skin like an amber floral and woody breeze.',
+    name: 'Silk Glow Moisturizer',
+    brand: 'Antilia',
+    category: 'Creams',
+    price: 6200,
+    stock: 25,
+    image: '/Antilia/assets/products/p2.jpg',
+    description: 'A lightweight yet deeply hydrating cream that leaves a velvet-smooth finish and a natural radiance.',
     isBestseller: true,
-    notes: ['Jasmine', 'Saffron', 'Amberwood', 'Fir Resin'],
-    occasions: ['Date Night', 'Signature Scent']
+    skinType: ['Dry to Normal'],
+    ingredients: ['Hyaluronic Acid', 'Shea Butter', 'Vitamin E'],
+    concern: ['Hydration'],
+    usage: 'Morning and evening after serum.'
   },
   {
     id: 'p3',
-    name: 'Aventus',
-    brand: 'Creed',
-    category: 'Fresh',
-    price: 42000,
-    stock: 5,
-    image: 'https://images.unsplash.com/photo-1588669460012-70bbed0edfe1?auto=format&fit=crop&q=80&w=800',
-    description: 'Inspired by the dramatic life of a historic emperor, celebrating strength, power and success.',
+    name: 'Rose Gold Face Oil',
+    brand: 'Antilia',
+    category: 'Oils',
+    price: 7800,
+    stock: 8,
+    image: '/Antilia/assets/products/p3.jpg',
+    description: 'Infused with real 24k gold flakes and cold-pressed rosehip oil for the ultimate luxury glow.',
     isBestseller: true,
-    notes: ['Bergamot', 'Apple', 'Pineapple', 'Birch'],
-    occasions: ['Work', 'Formal']
+    skinType: ['Normal to Oily'],
+    ingredients: ['Rosehip Oil', '24k Gold', 'Vitamin C'],
+    concern: ['Radiance'],
+    usage: 'Massage into skin as the final step of your routine.'
   },
   {
     id: 'p4',
-    name: 'Lost Cherry',
-    brand: 'Tom Ford',
-    category: 'Fruity',
-    price: 33500,
+    name: 'Cloud Cleansing Balm',
+    brand: 'Antilia',
+    category: 'Cleansers',
+    price: 4500,
     stock: 15,
-    image: 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=800',
-    description: 'A full-bodied journey into the once-forbidden.',
+    image: '/Antilia/assets/products/p4.jpg',
+    description: 'Transforms from a silky balm to a light oil, melting away makeup and impurities without stripping moisture.',
     isBestseller: false,
-    notes: ['Cherry', 'Bitter Almond', 'Tonka Bean', 'Vanilla'],
-    occasions: ['Evening Wear', 'Date Night']
+    skinType: ['Sensitive'],
+    ingredients: ['Camellia Oil', 'Oat Extract', 'Coconut Oil'],
+    concern: ['Gentle Cleansing'],
+    usage: 'Massage on dry skin, then rinse with warm water.'
   },
   {
     id: 'p5',
-    name: 'Black Orchid',
-    brand: 'Tom Ford',
-    category: 'Floral',
-    price: 12750,
+    name: 'Advanced Repair Eye Cream',
+    brand: 'Antilia',
+    category: 'Creams',
+    price: 5400,
     stock: 20,
-    image: 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&q=80&w=800',
-    description: 'Iconic. Elusive. Seductive. A luxurious and sensual fragrance of rich, dark accords.',
+    image: '/Antilia/assets/products/p5.jpg',
+    description: 'Targets fine lines and dark circles with a concentrated blend of peptides and caffeine.',
     isBestseller: true,
-    notes: ['Truffle', 'Orchid', 'Patchouli', 'Incense'],
-    occasions: ['Evening Wear', 'Signature Scent']
+    skinType: ['All Skin Types'],
+    ingredients: ['Peptides', 'Caffeine', 'Niacinamide'],
+    concern: ['Dark Circles'],
+    usage: 'Gently pat around the eye area.'
   },
   {
     id: 'p6',
-    name: 'Santal 33',
-    brand: 'Le Labo',
-    category: 'Woody',
-    price: 27200,
+    name: 'Pure Vit-C Brightening Serum',
+    brand: 'Antilia',
+    category: 'Serums',
+    price: 7200,
     stock: 10,
-    image: 'https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?auto=format&fit=crop&q=80&w=800',
-    description: 'A perfume that introduces cardamom, iris, violet, ambient which crackle in the formula.',
+    image: '/Antilia/assets/products/p6.jpg',
+    description: 'An antioxidant powerhouse that brightens skin tone and prevents environmental damage.',
     isBestseller: false,
-    notes: ['Sandalwood', 'Leather', 'Cardamom', 'Iris'],
-    occasions: ['Everyday Wear', 'Work']
+    skinType: ['Normal'],
+    ingredients: ['Vitamin C', 'Ferulic Acid', 'Vitamin E'],
+    concern: ['Brightening'],
+    usage: 'Apply in the morning before SPF.'
   },
   {
     id: 'p7',
-    name: 'Gypsy Water',
-    brand: 'Byredo',
-    category: 'Woody',
-    price: 21500,
+    name: 'Hydra-Plumping Mask',
+    brand: 'Antilia',
+    category: 'Masks',
+    price: 3800,
     stock: 14,
-    image: 'https://images.unsplash.com/photo-1594913366159-1832fa7ab4ed?auto=format&fit=crop&q=80&w=800',
-    description: 'An ode to the beauty of Romani culture, its unique customs, intimate beliefs and distinguished way of living.',
+    image: '/Antilia/assets/products/p7.jpg',
+    description: 'An overnight treatment that delivers an intense burst of hydration for plump, rested skin by morning.',
     isBestseller: false,
-    notes: ['Bergamot', 'Lemon', 'Pepper', 'Vanilla'],
-    occasions: ['Everyday Wear', 'Casual']
+    skinType: ['Dry'],
+    ingredients: ['Hyaluronic Acid', 'Aloe Vera', 'Honey'],
+    concern: ['Dehydration'],
+    usage: 'Leave on overnight, use 2-3 times a week.'
   },
   {
     id: 'p8',
-    name: 'Angels Share',
-    brand: 'Kilian',
-    category: 'Oriental',
-    price: 18500,
-    stock: 4,
-    image: 'https://images.unsplash.com/photo-1582211594533-25b88c072444?auto=format&fit=crop&q=80&w=800',
-    description: 'Contains the essence of Cognac derived from the liquor to lend it a natural caramel color.',
+    name: 'Exfoliating Glow Toner',
+    brand: 'Antilia',
+    category: 'Toners',
+    price: 3200,
+    stock: 18,
+    image: '/Antilia/assets/products/p8.jpg',
+    description: 'A liquid exfoliant with AHAs and BHAs that smooths texture and clears pores.',
     isBestseller: true,
-    notes: ['Cognac', 'Cinnamon', 'Tonka Bean', 'Oakwood'],
-    occasions: ['Evening Wear', 'Holiday']
-  },
-  {
-    id: 'p9',
-    name: 'Portrait of a Lady',
-    brand: 'Frederic Malle',
-    category: 'Floral',
-    price: 36000,
-    stock: 2,
-    image: 'https://images.unsplash.com/photo-1523293115678-02bb1470bd49?auto=format&fit=crop&q=80&w=800',
-    description: 'A baroque, sumptuous and symphonic perfume.',
-    isBestseller: false,
-    notes: ['Rose', 'Patchouli', 'Clove', 'Raspberry'],
-    occasions: ['Formal', 'Signature Scent']
-  },
-  {
-    id: 'p10',
-    name: 'Nuit de Sable',
-    brand: 'BDK Parfums',
-    category: 'Oriental',
-    price: 15400,
-    stock: 25,
-    image: 'https://images.unsplash.com/photo-1599305090598-fe179d501227?auto=format&fit=crop&q=80&w=800',
-    description: 'Inspired by a walk in the gardens of the Palais Royal.',
-    isBestseller: false,
-    notes: ['Sand', 'Spices', 'Rose', 'Nutmeg'],
-    occasions: ['Evening Wear', 'Casual']
+    skinType: ['Normal to Combination'],
+    ingredients: ['Glycolic Acid', 'Salicylic Acid', 'Witch Hazel'],
+    concern: ['Texture'],
+    usage: 'Apply with a cotton pad after cleansing.'
   }
 ];
 
@@ -136,40 +126,51 @@ export const initialTestimonials = [
     id: 't1',
     name: 'Eleanor V.',
     role: 'Verified Buyer',
-    text: 'Antilia has entirely transformed how I experience luxury fragrances. The curation is breathtaking and the delivery experience felt completely personalized.',
+    text: 'Antilia has entirely transformed my skincare routine. The Silk Glow Moisturizer leaves my skin feeling like actual silk. The results are visible after just a week!',
     rating: 5
   },
   {
     id: 't2',
     name: 'James L.',
     role: 'Verified Buyer',
-    text: 'A flawless collection of niche scents. I found my signature scent here after years of searching. The Baccarat Rouge presentation was stunning.',
+    text: 'As someone with sensitive skin, finding effective products is hard. The Cloud Cleansing Balm is a game-changer. So gentle yet so effective.',
     rating: 5
   },
   {
     id: 't3',
     name: 'Sofia R.',
     role: 'Verified Buyer',
-    text: 'Every perfume feels like a masterpiece. The recommendations based on notes are incredibly accurate. Will exclusively shop here from now on.',
+    text: 'The Rose Gold Face Oil is pure luxury. It gives me a glow that lasts all day without being greasy. Absolutely worth the investment.',
     rating: 5
   }
 ];
 
 export const initialUsers = [
-  { id: 'u1', name: 'Admin User', email: 'admin@antilia.com', role: 'admin' },
-  { id: 'u2', name: 'John Doe', email: 'john@example.com', role: 'customer' }
+  { id: 'u1', name: 'Admin Team', email: 'admin@antilia.com', role: 'admin' },
+  { id: 'u2', name: 'Sarah Miller', email: 'sarah@example.com', role: 'customer' }
 ];
 
 export const initialOrders = [
   {
     id: 'o1',
     userId: 'u2',
-    customerName: 'John Doe',
+    customerName: 'Sarah Miller',
     date: new Date(Date.now() - 86400000).toISOString(),
     items: [
-      { productId: 'p1', name: 'Oud Silk Mood', price: 27600, quantity: 1 }
+      { productId: 'p1', name: 'Midnight Recovery Serum', price: 8500, quantity: 1 }
     ],
-    total: 27600,
+    total: 8500,
     status: 'Delivered'
+  },
+  {
+    id: 'o2',
+    userId: 'u2',
+    customerName: 'Sarah Miller',
+    date: new Date(Date.now() - 172800000).toISOString(),
+    items: [
+      { productId: 'p2', name: 'Silk Glow Moisturizer', price: 6200, quantity: 1 }
+    ],
+    total: 6200,
+    status: 'Shipped'
   }
 ];

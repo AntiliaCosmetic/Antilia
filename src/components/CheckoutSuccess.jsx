@@ -8,20 +8,20 @@ const CheckoutSuccess = () => {
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
-        className="glass-panel-dark p-8 md:p-12 shadow-2xl max-w-md w-full text-center relative overflow-hidden border border-[#D9BB73]/20"
+        className="glass-panel p-12 shadow-2xl max-w-md w-full text-center relative overflow-hidden border border-[var(--color-brand-rose-gold-light)]"
       >
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
           transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-          className="w-20 h-20 mx-auto bg-[#D9BB73]/10 rounded-full flex items-center justify-center mb-6 border border-[#D9BB73]/30"
+          className="w-24 h-24 mx-auto bg-[var(--color-brand-rose-gold-light)]/30 rounded-full flex items-center justify-center mb-8 border border-[var(--color-brand-rose-gold-dark)]/20"
         >
-          <CheckCircle className="w-10 h-10 text-[#D9BB73]" />
+          <CheckCircle className="w-12 h-12 text-[var(--color-brand-rose-gold-dark)]" />
         </motion.div>
         
-        <h2 className="text-3xl font-serif text-[#F9F8F6] mb-4">Order Confirmed</h2>
-        <p className="text-gray-400 mb-8 font-light text-sm tracking-wide">
-          Your luxury experience is on its way. We have received your order and will begin processing it shortly.
+        <h2 className="text-4xl font-serif text-[var(--color-brand-charcoal)] mb-4">Ritual Confirmed</h2>
+        <p className="text-[var(--color-brand-muted)] mb-10 font-light text-sm tracking-widest leading-relaxed secondary-serif uppercase">
+          Your luxury skincare experience is on its way. We have received your order and our specialists are now preparing your parcel with care.
         </p>
 
         {/* Confetti Animation Effect (simplified with CSS/Framer) */}

@@ -1,77 +1,156 @@
 @import "tailwindcss";
 
 @theme {
-  --color-brand-offwhite: #F9F8F6;
-  --color-brand-champagne: #D9BB73;
-  --color-brand-champagne-light: #F0DFC0;
-  --color-brand-charcoal: #0F0F0F;
-  --color-brand-darkgrey: #1A1A1A;
+  --color-brand-silk-white: #F9F8F6;
+  --color-brand-rose-gold: #E5B2A0;
+  --color-brand-rose-gold-light: #F5E6E0;
+  --color-brand-rose-gold-dark: #D4A373;
+  --color-brand-charcoal: #1A1A1A;
+  --color-brand-muted: #7A7A7A;
   --font-serif: "Playfair Display", serif;
+  --font-secondary-serif: "Lora", serif;
   --font-sans: "Inter", sans-serif;
 }
 
+:root {
+  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 body {
-  background-color: var(--color-brand-charcoal);
-  color: var(--color-brand-offwhite);
+  background-color: var(--color-brand-silk-white);
+  color: var(--color-brand-charcoal);
   font-family: var(--font-sans);
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-serif);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.01em;
+  color: var(--color-brand-charcoal);
 }
 
-.champagne-gradient {
-  background: linear-gradient(135deg, #F0DFC0 0%, #D9BB73 100%);
+p, span, div {
+  line-height: 1.6;
+}
+
+.secondary-serif {
+  font-family: var(--font-secondary-serif);
+}
+
+.rose-gold-gradient {
+  background: linear-gradient(135deg, var(--color-brand-rose-gold-light) 0%, var(--color-brand-rose-gold) 100%);
 }
 
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(135deg, #D9BB73, #F0DFC0);
+  background-image: linear-gradient(135deg, var(--color-brand-rose-gold-dark), var(--color-brand-rose-gold));
 }
 
 .luxury-card {
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  background: transparent;
+  transition: var(--transition-smooth);
+  background: white;
+  border: 1px solid rgba(229, 178, 160, 0.1);
 }
 
 .luxury-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(229, 178, 160, 0.15);
+  border-color: rgba(229, 178, 160, 0.3);
 }
 
 .glass-panel {
-  background: rgba(15, 15, 15, 0.7);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(217, 187, 115, 0.2);
+  border: 1px solid rgba(229, 178, 160, 0.2);
 }
 
 .glass-panel-dark {
-  background: rgba(10, 10, 10, 0.85);
+  background: rgba(26, 26, 26, 0.85);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(217, 187, 115, 0.3);
+  border: 1px solid rgba(229, 178, 160, 0.3);
+}
+
+.glow-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(229, 178, 160, 0.15) 0%, rgba(249, 248, 246, 0) 70%);
+  z-index: 0;
+  animation: pulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1) translate(0, 0); }
+  100% { transform: scale(1.1) translate(2% 2%); }
+}
+
+.btn-primary {
+  background: var(--color-brand-rose-gold-dark);
+  color: white;
+  padding: 12px 32px;
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background: var(--color-brand-charcoal);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--color-brand-charcoal);
+  padding: 12px 32px;
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+  border: 1px solid var(--color-brand-rose-gold);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--color-brand-rose-gold-light);
+  transform: translateY(-2px);
 }
 
 /* Hide scrollbar for clean look */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 4px;
 }
 ::-webkit-scrollbar-track {
-  background: #0F0F0F;
+  background: var(--color-brand-silk-white);
 }
 ::-webkit-scrollbar-thumb {
-  background: #1A1A1A;
-  border-radius: 3px;
+  background: var(--color-brand-rose-gold-light);
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #D9BB73;
+  background: var(--color-brand-rose-gold);
 }
